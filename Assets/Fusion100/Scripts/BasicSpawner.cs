@@ -13,15 +13,24 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
 
+    private bool _mouseButton0;
+    private bool _mouseButton1;
+
+    private void Update()
+    {
+        _mouseButton0 = _mouseButton0 || Input.GetMouseButton(0);
+        _mouseButton1 = _mouseButton1 || Input.GetMouseButton(1);
+    }
+
     private void OnGUI()
     {
         if (_runner == null)
         {
-            if (GUI.Button(new Rect(0,0,200,40), "Host"))
+            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
             {
                 StartGame(GameMode.Host);
             }
-            if (GUI.Button(new Rect(0,40,200,40), "Join"))
+            if (GUI.Button(new Rect(0, 40, 200, 40), "Join"))
             {
                 StartGame(GameMode.Client);
             }
@@ -67,6 +76,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             data.direction += Vector3.right;
         }
 
+        if (_mouseButton0)
+        {
+            data.buttons |= NetworkInputData.MOUSEBUTTON1;
+        }
+        _mouseButton0 = false;
+
+        if (_mouseButton1)
+        {
+            data.buttons |= NetworkInputData.MOUSEBUTTON2;
+        }
+        _mouseButton1 = false;
+
         input.Set(data);
     }
 
@@ -75,7 +96,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (runner.IsServer)
         {
             // Create a unique position for the player
-            Vector3 spawnPosition = new Vector3((player.RawEncoded%runner.Config.Simulation.DefaultPlayers)*3,1,0);
+            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
             NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
 
             // Keep track of the player avatars so we can remove it when they disconnect
