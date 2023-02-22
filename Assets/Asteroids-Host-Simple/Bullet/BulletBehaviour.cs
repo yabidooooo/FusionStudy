@@ -22,7 +22,10 @@ namespace Asteroids.HostSimple
 
         public override void Spawned()
         {
-            if (Object.HasStateAuthority == false) return;
+            if (Object.HasStateAuthority == false)
+            {
+                return;
+            }
 
             // The network parameters get initializes by the host. These will be propagated to the clients since the
             // variables are [Networked]
@@ -49,7 +52,10 @@ namespace Asteroids.HostSimple
         // If the bullet has exceeded its lifetime, it gets destroyed
         private void CheckLifetime()
         {
-            if (_currentLifetime.Expired(Runner) == false) return;
+            if (_currentLifetime.Expired(Runner) == false)
+            {
+                return;
+            }
 
             Runner.Despawn(Object);
         }
@@ -57,15 +63,19 @@ namespace Asteroids.HostSimple
         // Check if the bullet will hit an asteroid in the next tick.
         private bool HasHitAsteroid()
         {
-            var hitAsteroid = Runner.LagCompensation.Raycast(transform.position, _direction, _speed * Runner.DeltaTime,
-                Object.InputAuthority, out var hit, _asteroidLayer);
+            var hitAsteroid = Runner.LagCompensation.Raycast(transform.position, _direction, _speed * Runner.DeltaTime, Object.InputAuthority, out var hit, _asteroidLayer);
 
-            if (hitAsteroid == false) return false;
+            if (hitAsteroid == false)
+            {
+                return false;
+            }
 
             var asteroidBehaviour = hit.GameObject.GetComponent<AsteroidBehaviour>();
 
             if (asteroidBehaviour.IsAlive == false)
+            {
                 return false;
+            }
 
             asteroidBehaviour.HitAsteroid(Object.InputAuthority);
 
