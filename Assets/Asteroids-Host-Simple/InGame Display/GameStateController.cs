@@ -42,14 +42,20 @@ namespace Asteroids.HostSimple
             {
                 foreach (var player in Runner.ActivePlayers)
                 {
-                    if (Runner.TryGetPlayerObject(player, out var playerObject) == false) continue;
+                    if (Runner.TryGetPlayerObject(player, out var playerObject) == false)
+                    {
+                        continue;
+                    }
                     TrackNewPlayer(playerObject.GetComponent<PlayerDataNetworked>().Id);
                 }
             }
 
             // --- This section is for all networked information that has to be initialized by the HOST
 
-            if (Object.HasStateAuthority == false) return;
+            if (Object.HasStateAuthority == false)
+            {
+                return;
+            }
 
             // Initialize the game state on the host
             _gameState = GameState.Starting;
@@ -117,7 +123,10 @@ namespace Asteroids.HostSimple
             // Display the results and
             // the remaining time until the current game session is shutdown
 
-            if (Runner.TryFindBehaviour(_winner, out PlayerDataNetworked playerData) == false) return;
+            if (Runner.TryFindBehaviour(_winner, out PlayerDataNetworked playerData) == false)
+            {
+                return;
+            }
 
             _startEndDisplay.gameObject.SetActive(true);
             _ingameTimerDisplay.gameObject.SetActive(false);
@@ -128,7 +137,10 @@ namespace Asteroids.HostSimple
             // --- Host
             // Shutdowns the current game session.
             // The disconnection behaviour is found in the OnServerDisconnect.cs script
-            if (_timer.ExpiredOrNotRunning(Runner) == false) return;
+            if (_timer.ExpiredOrNotRunning(Runner) == false)
+            {
+                return;
+            }
 
             if (Object.HasStateAuthority)
             {
@@ -139,34 +151,46 @@ namespace Asteroids.HostSimple
         // Called from the ShipController when it hits an asteroid
         public void CheckIfGameHasEnded()
         {
-            if (Object.HasStateAuthority == false) return;
+            if (Object.HasStateAuthority == false)
+            {
+                return;
+            }
 
             int playersAlive = 0;
 
             for (int i = 0; i < _playerDataNetworkedIds.Count; i++)
             {
-                if (Runner.TryFindBehaviour(_playerDataNetworkedIds[i],
-                        out PlayerDataNetworked playerDataNetworkedComponent) == false)
+                if (Runner.TryFindBehaviour(_playerDataNetworkedIds[i], out PlayerDataNetworked playerDataNetworkedComponent) == false)
                 {
                     _playerDataNetworkedIds.RemoveAt(i);
                     i--;
                     continue;
                 }
 
-                if (playerDataNetworkedComponent.Lives > 0) playersAlive++;
+                if (playerDataNetworkedComponent.Lives > 0)
+                {
+                    playersAlive++;
+                }
             }
 
             // If more than 1 player is left alive, the game continues.
             // If only 1 player is left, the game ends immediately.
-            if (playersAlive > 1) return;
+            if (playersAlive > 1)
+            {
+                return;
+            }
 
             foreach (var playerDataNetworkedId in _playerDataNetworkedIds)
             {
-                if (Runner.TryFindBehaviour(playerDataNetworkedId,
-                        out PlayerDataNetworked playerDataNetworkedComponent) ==
-                    false) continue;
+                if (Runner.TryFindBehaviour(playerDataNetworkedId, out PlayerDataNetworked playerDataNetworkedComponent) == false)
+                {
+                    continue;
+                }
 
-                if (playerDataNetworkedComponent.Lives > 0 == false) continue;
+                if (playerDataNetworkedComponent.Lives > 0 == false)
+                {
+                    continue;
+                }
 
                 _winner = playerDataNetworkedId;
             }

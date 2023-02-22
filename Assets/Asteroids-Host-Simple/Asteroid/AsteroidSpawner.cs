@@ -137,8 +137,7 @@ namespace Asteroids.HostSimple
         }
 
         // Adds a random spin to small asteroids
-        private void SpinSmallAsteroid(NetworkRunner runner, NetworkObject asteroidNetworkObject, Vector3 force,
-            Vector3 torque)
+        private void SpinSmallAsteroid(NetworkRunner runner, NetworkObject asteroidNetworkObject, Vector3 force, Vector3 torque)
         {
             var rb = asteroidNetworkObject.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero;
@@ -156,13 +155,11 @@ namespace Asteroids.HostSimple
 
             for (int counter = 0; counter < splintersToSpawn; ++counter)
             {
-                Vector3 force = Quaternion.Euler(0, counter * 360.0f / splintersToSpawn, 0) * Vector3.forward *
-                                Random.Range(0.5f, 1.5f) * 300.0f;
+                Vector3 force = Quaternion.Euler(0, counter * 360.0f / splintersToSpawn, 0) * Vector3.forward * Random.Range(0.5f, 1.5f) * 300.0f;
                 Vector3 torque = Random.insideUnitSphere * Random.Range(500.0f, 1500.0f);
                 Quaternion rotation = Quaternion.Euler(0, Random.value * 180.0f, 0);
 
-                var asteroid = Runner.Spawn(_smallAsteroid, position + force.normalized * 10.0f, rotation,
-                    PlayerRef.None,
+                var asteroid = Runner.Spawn(_smallAsteroid, position + force.normalized * 10.0f, rotation, PlayerRef.None,
                     (networkRunner, asteroidNetworkObject) =>
                         SpinSmallAsteroid(networkRunner, asteroidNetworkObject, force, torque));
 

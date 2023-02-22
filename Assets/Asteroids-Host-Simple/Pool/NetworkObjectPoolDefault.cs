@@ -10,11 +10,10 @@ namespace Asteroids.HostSimple
     public class NetworkObjectPoolDefault : MonoBehaviour, INetworkObjectPool
     {
 
-        [Tooltip("The objects to be pooled, leave it empty to pool every Network Object spawned")] [SerializeField]
-        private List<NetworkPrefabRef> _poolableObjects;
+        [Tooltip("The objects to be pooled, leave it empty to pool every Network Object spawned")]
+        [SerializeField] private List<NetworkPrefabRef> _poolableObjects;
 
-        private Dictionary<NetworkPrefabId, Stack<NetworkObject>> _free =
-            new Dictionary<NetworkPrefabId, Stack<NetworkObject>>();
+        private Dictionary<NetworkPrefabId, Stack<NetworkObject>> _free = new Dictionary<NetworkPrefabId, Stack<NetworkObject>>();
 
         public NetworkObject AcquireInstance(NetworkRunner runner, NetworkPrefabInfo info)
         {
