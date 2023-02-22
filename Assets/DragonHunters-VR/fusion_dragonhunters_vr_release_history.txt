@@ -1,0 +1,91 @@
+# 1.1.1
+
+## Build 22 (Oct 21, 2022)
+
+**Changes**
+
+- Photon Voice SDK updated to 2.50
+- The Weaver setup to include PhotonVoice.Fusion (assembly with the bridge and object)
+
+**Removed**
+
+- Outdated VoiceFusionIntegration folder
+
+**Bug Fixes**
+
+- Fixed: SpawnRedBox world button to spawn cube variant with red material
+- Fixed: Minor copy paste issue in the readme
+
+## Build 21 (Jun 14, 2022)
+
+**Bug Fixes**
+
+- Fixed: Issue in NetworkDebugStart.ShutdownAll()
+
+# 1.0.0
+
+## Build 20 (Apr 22, 2022)
+
+**What's New**
+
+- Higher resolution AppIcon and renamed the set
+- AppIcon for Standalone and Android
+- AssetStoreTools
+- Voice Support (Voice 2 package plus Fusion Voice Integration).  
+NOTE: The Speakers are not yet setup for positional audio (by default they don't use that)
+
+**Changes**
+
+- Voice to not connect if the client is in singleplayer mode
+- Spatial blend to 0.8
+
+**Bug Fixes**
+
+- Fixed: Correct bow interpolation on client when getting bow from spawner
+- Fixed: Solved interpolation issue by setting interpolation to none for local player instead of OrderAfter
+
+## Build 27 (Mar 18, 2022)
+
+**Changes**
+
+- Updated: To Fusion SDK 1.0.0, Build 439.
+- Simplified predicted spawn interpolation: using built-in NT interpolation now.
+- Added Photon Voice integration.
+
+# 0.13.0
+
+## Build 14 (Feb 02, 2022)
+
+- Fixed: Higlights and release velocity get rolled back correctly
+- Fixed: Right hand position tracking
+- Updated: Fusion 0.13.0 #402
+
+# 0.11.0
+
+## Build 13 (Dec 17, 2021)
+
+- Changed the package format from `unitypackage` to `zipfile` to provide dependencies in the package manifest
+- Added interpolation for predicted spawn  
+- Added SceneObjectProvider to custom Network start
+- Added observer camera before any rig is spawned
+- Override DebugStart to use Pool on Runner Object
+- Bow spawner
+- Added starting scene to streamline standalone headset launch ( eg oculus quest)
+
+
+**Changes**
+
+- Copied latest Network Pool from Tank sample
+- Refactored arrows to work with raycast and predicted spawn
+- Naming convention
+
+
+**Bug Fixes**
+
+- Fixed: Set arrow interpolation to auto for correct predicted spawn interpolation
+- Fixed: Teleport
+- Fixed: Smooth render of bow at local hand position
+- Fixed: Renamed m_ActiveHighlight to CurrentlyGrabbedHighlight for more clarity
+- Fixed: Score number using rpc so its triggered also when predicted spawn arrow hits targets
+- Fixed: Hand prediction
+
