@@ -14,6 +14,7 @@ public class ConnectionHelper : MonoBehaviour
     {
         _debugStart = GetComponent<NetworkDebugStart>();
     }
+
     private void Start()
     {
         DoStart();
@@ -21,24 +22,25 @@ public class ConnectionHelper : MonoBehaviour
 
     public void StartHost()
     {
-        ChangeConnection( GameMode.Host );
+        ChangeConnection(GameMode.Host);
     }
+
     public void StartClient()
     {
-        ChangeConnection( GameMode.Client );
+        ChangeConnection(GameMode.Client);
     }
 
-    public void ChangeConnection( GameMode gameMode )
+    public void ChangeConnection(GameMode gameMode)
     {
-        Debug.Log( "Shutdown. Change connection to " + gameMode.ToString() );
+        Debug.Log("Shutdown. Change connection to " + gameMode.ToString());
         s_GameMode = gameMode;
 
-        StartCoroutine( ShutdownRoutine() );
+        StartCoroutine(ShutdownRoutine());
     }
 
     IEnumerator ShutdownRoutine()
     {
-        if( Camera.main != null )
+        if (Camera.main != null)
         {
             Camera.main.cullingMask = 0;
             Camera.main.clearFlags = CameraClearFlags.Color;
@@ -56,22 +58,22 @@ public class ConnectionHelper : MonoBehaviour
 
     void DoStart()
     {
-        Debug.Log( "Start game " + s_GameMode.ToString() );
+        Debug.Log("Start game " + s_GameMode.ToString());
 
-        switch( s_GameMode )
+        switch (s_GameMode)
         {
-        case GameMode.Client:
-            _debugStart.StartClient();
-            break;
-        case GameMode.Host:
-            _debugStart.StartHost();
-            break;
-        case GameMode.Single:
-            _debugStart.StartSinglePlayer();
-            break;
-        case GameMode.Shared:
-            _debugStart.StartSharedClient();
-            break;
+            case GameMode.Client:
+                _debugStart.StartClient();
+                break;
+            case GameMode.Host:
+                _debugStart.StartHost();
+                break;
+            case GameMode.Single:
+                _debugStart.StartSinglePlayer();
+                break;
+            case GameMode.Shared:
+                _debugStart.StartSharedClient();
+                break;
         }
     }
 }

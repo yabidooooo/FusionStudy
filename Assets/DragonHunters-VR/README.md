@@ -40,7 +40,8 @@ Copyright: Exit Games GmbH  Email: developer@photonengine.com
 # Hello-Fusion-VR
 
 ## Starting Scene
-Load the starting scene ("VR_Start") to launch the game. This scene will start Fusion in Singleplayer-mode. This way all the interactions work without any special non-networked code. Select one of the buttons to start as Host or Client and load the proper Game scene.
+Load the starting scene ("VR_Start") to launch the game. This scene will start Fusion in Singleplayer-mode. 
+This way all the interactions work without any special non-networked code. Select one of the buttons to start as Host or Client and load the proper Game scene.
 
 
 ## The Player

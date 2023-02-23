@@ -12,6 +12,7 @@ public class InitializeOpenXR : MonoBehaviour
     {
         Application.wantsToQuit += ApplicationWantsToQuit;
     }
+
     private void OnDestroy()
     {
         Application.wantsToQuit -= ApplicationWantsToQuit;
@@ -87,5 +88,4 @@ public class InitializeOpenXR : MonoBehaviour
             }
         }
     }
-
 }

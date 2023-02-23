@@ -14,12 +14,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Asteroids-Host-Simple/Scenes/AsteroidsSimple-Game.unity
     guid: ba2d6bee897e95247b9dfc3a5b8680a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Asteroids-Shared-Simple/Scenes/AsteroidsSimple-Menu.unity
     guid: 00c0e2ac9edb91a48a82dc955d65877a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Asteroids-Shared-Simple/Scenes/AsteroidsSimple-Game.unity
     guid: 70268bbe202339145947e9e2c9a47d16
+  - enabled: 1
+    path: Assets/DragonHunters-VR/Scenes/VR Start.unity
+    guid: c7559128d9205c74ba7fe46a29a32072
+  - enabled: 1
+    path: Assets/DragonHunters-VR/Scenes/Game.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: da2828aebf74dca4f97de66970a7f9de,
       type: 2}
